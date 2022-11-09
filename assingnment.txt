@@ -1,0 +1,3 @@
+q1 - Check 4-args/greet.go file
+
+q2- Think of any example and create a package and export its func and vars. Use that package in a main file.

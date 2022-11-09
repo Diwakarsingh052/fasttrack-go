@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 
@@ -16,5 +18,5 @@ func main() {
 		var b string = "bob"
 		fmt.Println(b)
 	}
-
+	
 }

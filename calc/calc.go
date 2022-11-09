@@ -2,15 +2,17 @@ package calc
 
 import "fmt"
 
-var sum int
+var Sum int
 
+// Add func is exported as first letter is uppercase
 func Add() {
 	i, b := 10, 20
-	sum = i + b
-	printSomething()
+	Sum = i + b
+	sub()
+
 	//fmt.Println("i am add func from the calc package", sum)
 }
 
-func printSomething() {
-	fmt.Println("i am add func from the calc package", sum)
+func PrintSomething() {
+	fmt.Println("i am add func from the calc package", Sum)
 }

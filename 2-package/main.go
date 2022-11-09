@@ -2,11 +2,17 @@ package main
 
 import (
 	"learn-go/calc" // moduleName/packageName
-	"log"
+	"learn-go/calc/data"
 )
+
+// https://github.com/kubernetes/kubernetes/tree/master/pkg
 
 func main() {
 	calc.Add()
-	log.Println()
-	//diwakarsingh276@gmail.com
+	//calc.Sum = 100
+	calc.PrintSomething()
+
+	data.DBConn = "mysql"
+	data.GetData()
+
 }
