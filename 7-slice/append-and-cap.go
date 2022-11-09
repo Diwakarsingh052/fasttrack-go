@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// https://go.dev/ref/spec#Appending_and_copying_slices
 /*
 	append func working
 
