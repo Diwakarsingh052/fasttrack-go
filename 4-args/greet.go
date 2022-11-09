@@ -13,7 +13,7 @@ func greet() {
 	// os.Args is a string type so no matter what we pass that would be always be of string type so conversion is imp
 	details := os.Args[1:]
 
-	if len(details) < 2 {
+	if len(details) < 3 {
 		log.Println("please provide your name, age, marks")
 		//log.Fatalln("") // stop the program
 		//os.Exit(1)
@@ -23,13 +23,21 @@ func greet() {
 
 	name := details[0]
 	ageString := details[1]
+	markString := details[2]
 
 	age, err := strconv.Atoi(ageString)
+	if err != nil { // if err is not nil it means that error happened
+		log.Println(err)
+		return
+	}
+
+	marks, err := strconv.Atoi(markString)
+
 	if err != nil {
 		log.Println(err)
 		return
 	}
-	fmt.Println(name, age)
+	fmt.Println(name, age, marks)
 
 	// default val of err is nil which indicates no error
 	//var defaultErr error
