@@ -20,7 +20,7 @@ func main() {
 
 	//b = append(b, 888) //It is going to change the base slice because they are  sharing the same memory
 	inspectSlice("b", b)
-	b = append(b, 888, 999, 777, 666) // why this line doesn't affect i slice?
+	b = append(b, 888, 999, 777, 666) // we are adding to add 4 elems here but we don't have enough cap to fit all the values, allocation will happen here
 	inspectSlice("i", i)
 	inspectSlice("b", b)
 }
