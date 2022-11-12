@@ -5,3 +5,6 @@ q2- Think of any example and create a package and export its func and vars. Use 
 q3- read about copy and make in slices
 
 q4- Create a package that generates random number and use it. (note research about rand.Seed())
+
+q5- Create a package that provide functionality to read, write and close a file. Please store the file connection in a struct.
+    Create three methods on the struct (read, write and close) and use this in a main package.
