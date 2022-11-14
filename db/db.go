@@ -1,6 +1,9 @@
 package db
 
-import "errors"
+import (
+	"errors"
+	"os"
+)
 
 var DB string = "mongo"
 
@@ -23,4 +26,5 @@ func NewConfig(conn string) (*Config, error) {
 	//return &c, nil
 
 	return &Config{db: conn}, nil
+	os.OpenFile()
 }

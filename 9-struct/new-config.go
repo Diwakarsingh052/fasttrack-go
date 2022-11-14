@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"io/ioutil"
 	"log"
 	"os"
 )
@@ -35,6 +34,6 @@ func main() {
 	l := log.New(os.Stdout, "sales-app ", log.LstdFlags)
 	l.Println("welcome to this app")
 
-	ioutil.ReadAll()
-	ioutil.ReadFile()
+	//ioutil.ReadAll()
+	//ioutil.ReadFile()
 }
