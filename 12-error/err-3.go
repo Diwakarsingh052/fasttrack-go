@@ -10,6 +10,7 @@ var ErrFileNotFound = errors.New("not able to find in root directory")
 
 func main() {
 	_, err := openFile("abc")
+
 	if errors.Is(err, ErrFileNotFound) {
 		fmt.Println("our custom error  is present in the chain", "let's create that file")
 		return
