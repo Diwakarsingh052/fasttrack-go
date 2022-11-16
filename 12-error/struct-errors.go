@@ -33,6 +33,7 @@ func SearchSomething(s string) error {
 }
 
 func SearchName(name string) error {
+
 	return &QueryError{
 		Func:  "SearchName",
 		Input: name,

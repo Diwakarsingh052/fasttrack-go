@@ -61,11 +61,23 @@ func main() {
 	f := file{name: "abc.txt"} // concrete data
 	j := jsonObject{data: "any json"}
 
-	fetch(f)
-	fetch(j)
+	//fetch(f)
+	//fetch(j)
 
-	//io.Reader() implement these interfaces over the struct
-	//io.Writer()
+	//var r reader // nil is the default value of the interface
+	//s := make([]byte, 90)
+	//x, err := r.read(s) // we can't call the read as no struct or concrete value was passed to it.
+
+	var r reader = f //passing in file var as it impls the interface
+	s := make([]byte, 90)
+	r.read(s)
+	fmt.Println(string(s))
+
+	fmt.Printf("%T\n", r)
+	r = j     // passing in jsonObject as it impls the interface
+	r.read(s) // jsonObject read method would be called
+	fmt.Println(string(s))
+	fmt.Printf("%T\n", r)
 
 }
 

@@ -9,3 +9,4 @@ q4- Create a package that generates random number and use it. (note research abo
 q5- Create a package that provide functionality to read, write and close a file. Please store the file connection in a struct.
     Create three methods on the struct (read, write and close) and use this in a main package.
 
+q6- check 3-interface file and 7-empty interface
