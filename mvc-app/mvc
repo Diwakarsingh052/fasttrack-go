@@ -1,0 +1,5 @@
+mvc pattern is the way to organize the code
+
+M -> model -> this folder or struct code would be related to handle the db related stuff
+V -> views -> templates -> html files (Frontend)
+C -> controller -> we store handlers in the controller folder // this layer should never interact with the db directly

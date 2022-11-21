@@ -10,7 +10,7 @@ var cab = 1 // shared resource between goroutines
 var wg = &sync.WaitGroup{}
 
 func main() {
-	var m = &sync.Mutex{}
+	var m = &sync.Mutex{} // don't send the copy of the mutex
 
 	name := []string{"a", "b", "c", "d"}
 	for _, n := range name {
