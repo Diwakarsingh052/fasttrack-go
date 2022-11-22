@@ -1,4 +1,3 @@
-// Package model  is the only place that interacts with our Db
 package model
 
 import "errors"
@@ -19,10 +18,12 @@ var users = map[uint64]User{
 	},
 }
 
+// FetchUser fetches the data from the map
 func FetchUser(id uint64) (User, error) {
 	u, ok := users[id]
 	if !ok {
 		return User{}, ErrUserNotFound
 	}
 	return u, nil
+
 }
