@@ -3,24 +3,46 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/golang-jwt/jwt/v4"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
+	"service-app/auth"
 	"service-app/handlers"
 	"time"
 )
 
 func main() {
 
-	err := startApp()
+	l := log.New(os.Stdout, "users :", log.LstdFlags)
+
+	err := startApp(l)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 }
 
-func startApp() error {
+func startApp(log *log.Logger) error {
+
+	// =========================================================================
+	// Initialize authentication support
+	log.Println("main : Started : Initializing authentication support")
+	privatePEM, err := os.ReadFile("private.pem")
+	if err != nil {
+		return fmt.Errorf("reading auth private key %w", err)
+	}
+	privateKey, err := jwt.ParseRSAPrivateKeyFromPEM(privatePEM)
+	if err != nil {
+		return fmt.Errorf("parsing auth private key %w", err)
+	}
+	a, err := auth.NewAuth(privateKey)
+	if err != nil {
+		return fmt.Errorf("constructing auth %w", err)
+	}
+
+	//Initialize server
 	shutdown := make(chan os.Signal, 1)
 	signal.Notify(shutdown, os.Interrupt) // this will notify the shutdown chan if someone presses ctr+c
 
@@ -29,7 +51,7 @@ func startApp() error {
 		Addr:         ":8080",
 		ReadTimeout:  8000 * time.Second,
 		WriteTimeout: 800 * time.Second,
-		Handler:      handlers.Api(),
+		Handler:      handlers.Api(log, a),
 	}
 	serverErrors := make(chan error, 1)
 	go func() {

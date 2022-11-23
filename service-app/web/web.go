@@ -36,15 +36,17 @@ func (a *App) HandleFunc(method string, path string, handler HandlerFunc) {
 	//so we can pass it to gorilla mux to process it
 	f := func(w http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
-		v := Values{
+		v := &Values{
 			TraceId: uuid.NewString(),
 			Now:     time.Now(),
 		}
+
+		//putting values struct in the context
 		ctx = context.WithValue(ctx, KeyValue, v)
 
 		err := handler(ctx, w, r)
 		if err != nil {
-			log.Println(err)
+			log.Println("error escaped from the middleware ", err)
 			return
 		}
 	}

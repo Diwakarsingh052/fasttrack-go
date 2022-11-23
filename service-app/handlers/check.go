@@ -2,16 +2,19 @@ package handlers
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
+	"service-app/web"
 )
 
 func check(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
 	status := struct {
 		Status string
 	}{Status: "ok"}
-
-	return json.NewEncoder(w).Encode(status)
+	_ = status
+	//panic("i need to panic")
+	return web.Respond(ctx, w, status, http.StatusOK)
+	//return errors.New("something went wrong in the db")
+	//return web.NewRequestError(errors.New("trusted error"), http.StatusBadRequest)
 
 }
 
