@@ -9,6 +9,8 @@ import (
 	"os"
 	"os/signal"
 	"service-app/auth"
+	"service-app/data/users"
+	"service-app/database"
 	"service-app/handlers"
 	"time"
 )
@@ -25,6 +27,18 @@ func main() {
 }
 
 func startApp(log *log.Logger) error {
+
+	// =========================================================================
+	// Start Database
+	log.Println("main : Started : Initializing db support")
+	db, err := database.Open()
+	if err != nil {
+		return fmt.Errorf("connecting to db %w", err)
+	}
+	if err := db.Ping(); err != nil {
+		return err
+	}
+	uDB := &users.DbService{DB: db}
 
 	// =========================================================================
 	// Initialize authentication support
@@ -51,7 +65,7 @@ func startApp(log *log.Logger) error {
 		Addr:         ":8080",
 		ReadTimeout:  8000 * time.Second,
 		WriteTimeout: 800 * time.Second,
-		Handler:      handlers.Api(log, a),
+		Handler:      handlers.Api(log, a, uDB),
 	}
 	serverErrors := make(chan error, 1)
 	go func() {
