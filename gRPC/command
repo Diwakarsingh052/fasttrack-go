@@ -1,0 +1,17 @@
+// brew install protoc
+
+
+$ go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28
+$ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
+
+go env GOPATH // it will show your gopath
+// cat /etc/paths to view and use gedit to edit
+// add this line to the file
+// /Users/diwakarsingh/go/bin
+// hit save and all is set up
+
+
+
+protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative log.proto
+
+go mod tidy to find and download unused dep

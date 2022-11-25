@@ -1,0 +1,21 @@
+access pprof on debug port localhost:3000/debug/pprof
+hey -m GET -H "Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZXJ2aWNlIHByb2plY3QiLCJzdWIiOiI0IiwiYXVkIjpbInN0dWRlbnRzIl0sImV4cCI6MTY2MDU1MTA3NSwiaWF0IjoxNjYwNTQ3NDc1LCJyb2xlcyI6WyJVU0VSIl19.crTLTfglVhqJwj6OnfiDriQxQnBLm-KHrCZ4652qcpkUEs3oOA3Mzz_q2oHEPSFWsdDNJKGRf2EaB5uNv3uh7OIpDka-LZ3e4_URC4tS_Peg6dtlHQqh9LD1b-zuycj7U2UKqvSYQ2HREAJ-cqs2864E-JPjtUIIlJoXRVl0tRZha16fB81sulke1rmybGjA448fYs32tV02RzPyQTJdWO7GD507njnsrjHFNk_4fu-KzoEPRBHMGakBM8qBB9CabK3Q-tIP3bCkiomyxYxWES77gjWLioEDpF0K8MVNvEfnm0I9AHbkivbENsPafLdPAH3DcJ4-uBMSKIPIYzf-jQ" -c 100 -n 10000 "http://localhost:8080/view"
+go tool pprof localhost:3000/debug/pprof/allocs
+top 40 -cum
+weblist name
+
+
+openssl genpkey -algorithm RSA -out private.pem -pkeyopt rsa_keygen_bits:2048
+openssl rsa -in private.pem -pubout -out pubkey.pem
+
+
+CREATE TABLE users (
+  id SERIAL,
+  name TEXT,
+  email TEXT UNIQUE,
+  roles TEXT[],
+  password_hash VARCHAR(255),
+  date_created TIMESTAMP,
+  date_updated TIMESTAMP
+
+);

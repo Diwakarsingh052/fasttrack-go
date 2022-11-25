@@ -1,4 +1,4 @@
-module learn-go
+module grpc-client
 
 go 1.19
 

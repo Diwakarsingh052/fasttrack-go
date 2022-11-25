@@ -13,8 +13,11 @@ import (
 	"service-app/database"
 	"service-app/handlers"
 	"time"
+
+	_ "net/http/pprof"
 )
 
+// diwakarsingh276@gmail.com
 func main() {
 
 	l := log.New(os.Stdout, "users :", log.LstdFlags)
@@ -60,6 +63,15 @@ func startApp(log *log.Logger) error {
 	shutdown := make(chan os.Signal, 1)
 	signal.Notify(shutdown, os.Interrupt) // this will notify the shutdown chan if someone presses ctr+c
 
+	debug := http.Server{
+		Addr:    ":3000",
+		Handler: http.DefaultServeMux,
+	}
+	go func() {
+		//this port would be used for profiling
+		log.Println("main debug listening on ", debug.Addr)
+		debug.ListenAndServe()
+	}()
 	// providing config for the server
 	api := http.Server{
 		Addr:         ":8080",
